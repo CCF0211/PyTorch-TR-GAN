@@ -1,6 +1,3 @@
-"""This module implements an abstract base class (ABC) 'BaseDataset' for datasets.
-
-"""
 import torch.utils.data as data
 from abc import ABC, abstractmethod
 

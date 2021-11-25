@@ -13,9 +13,6 @@ from .networks import smooth_l1_loss
 
 
 class TimeRecurrentGanModel(BaseModel):
-    """
-
-    """
 
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
@@ -27,15 +24,6 @@ class TimeRecurrentGanModel(BaseModel):
 
         Returns:
             the modified parser.
-
-        For CycleGAN, in addition to GAN losses, we introduce lambda_A, lambda_B, and lambda_identity for the following losses.
-        A (source domain), B (target domain).
-        Generators: G_A: A -> B; G_B: B -> A.
-        Discriminators: D_A: G_A(A) vs. B; D_B: G_B(B) vs. A.
-        Forward cycle loss:  lambda_A * ||G_B(G_A(A)) - A|| (Eqn. (2) in the paper)
-        Backward cycle loss: lambda_B * ||G_A(G_B(B)) - B|| (Eqn. (2) in the paper)
-        Identity loss (optional): lambda_identity * (||G_A(B) - B|| * lambda_B + ||G_B(A) - A|| * lambda_A) (Sec 5.2 "Photo generation from paintings" in the paper)
-        Dropout is not used in the original CycleGAN paper.
         """
         parser.set_defaults(no_dropout=True)  # default TR-GAN did not use dropout
         if is_train:
