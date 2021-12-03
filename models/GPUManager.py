@@ -1,18 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 22 19:41:55 2017
-@author: Quantum Liu
-"""
-'''
-Example:
-gm=GPUManager()
-with torch.cuda.device(gm.auto_choice()):
-    blabla
-Or:
-gm=GPUManager()
-torch.cuda.set_device(gm.auto_choice())
-'''
-
 import os
 import torch
 

@@ -1,18 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 22 19:41:55 2017
-@author: Quantum Liu
-"""
-'''
-Example:
-gm=GPUManager()
-with torch.cuda.device(gm.auto_choice()):
-    blabla
-Or:
-gm=GPUManager()
-torch.cuda.set_device(gm.auto_choice())
-'''
-
 import os
 import torch
 import torch.nn as nn
@@ -44,7 +30,6 @@ if check_gpus():
         return:
             a dict of gpu infos
         Pasing a line of csv format text returned by nvidia-smi
-        解析一行nvidia-smi返回的csv格式文本
         '''
         numberic_args = ['memory.free', 'memory.total', 'power.draw', 'power.limit']  # 可计数的参数
         power_manage_enable = lambda v: (not 'Not Support' in v)  # lambda表达式，显卡是否滋瓷power management（笔记本可能不滋瓷）
@@ -61,7 +46,6 @@ if check_gpus():
         return:
             a list of dict
         Querying GPUs infos
-        查询GPU信息
         '''
         qargs = ['index', 'gpu_name', 'memory.free', 'memory.total', 'power.draw', 'power.limit'] + qargs
         cmd = 'nvidia-smi --query-gpu={} --format=csv,noheader'.format(','.join(qargs))
@@ -87,9 +71,6 @@ if check_gpus():
         A manager which can list all available GPU devices
         and sort them and choice the most free one.Unspecified
         ones pref.
-        GPU设备管理器，考虑列举出所有可用GPU设备，并加以排序，自动选出
-        最空闲的设备。在一个GPUManager对象内会记录每个GPU是否已被指定，
-        优先选择未指定的GPU。
         '''
 
         def __init__(self, qargs=[]):
@@ -128,7 +109,6 @@ if check_gpus():
                 a TF device object
             Auto choice the freest GPU device,not specified
             ones
-            自动选择最空闲GPU,返回索引
             '''
             for old_infos, new_infos in zip(self.gpus, query_gpu(self.qargs)):
                 old_infos.update(new_infos)
