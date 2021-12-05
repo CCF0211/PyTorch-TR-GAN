@@ -297,7 +297,7 @@ class TimeRecurrentGanModel(BaseModel):
                 loss_D_swap = self.backward_D_swap_basic(self.netD_swap_list[i], self.fake_images_list[i], i)
                 exec('self.loss_D_swap_ses_M{}=loss_D_swap'.format(ses_next))
                 self.loss_D_swap_list.append(loss_D_swap)
-            loss_D = self.backward_D_basic(self.netD_list[i], self.real_all_ses_images[i], fake_i, i)
+            loss_D = self.backward_D_basic(self.netD_list[i], self.real_all_ses_images[i + 1], fake_i, i)
             exec('self.loss_D_ses_M{}=loss_D'.format(ses_next))
             self.loss_D_list.append(loss_D)
 
