@@ -1,2 +1,2 @@
-# PyTorch-Time-Recurrent-GAN For Review
+# PyTorch-Time-Recurrent-GAN
 
